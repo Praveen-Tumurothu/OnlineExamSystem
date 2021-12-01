@@ -81,7 +81,7 @@ class ScheduleForm extends React.Component {
           },
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.response.data.message));
   };
 
   render() {

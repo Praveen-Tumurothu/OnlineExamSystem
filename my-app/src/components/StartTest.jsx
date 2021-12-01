@@ -72,7 +72,7 @@ class StartExam extends Component {
         examRollNo: this.props.match.params.ern,
         markedOption: event.target.value,
         questionNo: questionNo,
-        testPaperCode: 1,
+        testPaperCode: tpc,
       };
       this.state.ex = this.state.ex.concat(res);
       // console.log(this.state.ex);
@@ -81,7 +81,7 @@ class StartExam extends Component {
         examRollNo: this.props.match.params.ern,
         markedOption: event.target.value,
         questionNo: questionNo,
-        testPaperCode: 1,
+        testPaperCode: tpc,
       };
       this.state.ex = this.state.ex.concat(res);
       //console.log(this.state.ex);

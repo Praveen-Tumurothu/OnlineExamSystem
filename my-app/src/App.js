@@ -85,11 +85,13 @@ function App() {
         />
 
         <Route
+          exact
           path="/studentPage/StudentEnrollStudent"
           component={StudentSelfEnrollment}
         />
 
         <Route
+          exact
           path="/StudentSelfEnrollment/addNewEnrollment"
           component={AddStudentEnrollment}
         />

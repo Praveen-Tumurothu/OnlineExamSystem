@@ -4,7 +4,6 @@ import StudentAppBar from "./StudentAppBar";
 class AddStudentEnrollment extends Component {
   state = {
     enroll: {
-      studentId: "",
       courseId: "",
       batchName: "",
     },
@@ -43,19 +42,19 @@ class AddStudentEnrollment extends Component {
     event.preventDefault();
     console.log("handleSubmit");
     const enrollments = {
-      studentId: this.state.enroll.studentId,
+      studentId: this.props.location.state,
       courseId: this.state.enroll.courseId,
       batchName: this.state.enroll.batchName,
     };
     console.log(enrollments);
     axios
       .post(
-        `http://localhost:8080/admin/enrollstudent/${enrollments.studentId}/${enrollments.courseId}/${enrollments.batchName}`
+        `http://localhost:8080/student/selfEnrollment/${enrollments.studentId}/${enrollments.courseId}/${enrollments.batchName}`
       )
       .then((res) => {
         this.props.history.push({
-          pathname: "/adminPage/adminEnrollStudent",
-          state: this.props.location.state,
+          pathname: "/studentPage/StudentEnrollStudent",
+          state: this.props.location.state[0],
         });
       })
       .catch((error) => alert(error.response.data.message));
@@ -66,23 +65,6 @@ class AddStudentEnrollment extends Component {
         <StudentAppBar id={this.props.location.state} />
         <h3 class="text-center mt-5">Enroll Student</h3>
         <form className="w-50 mx-auto border p-3" onSubmit={this.handleSubmit}>
-          <div class="col-md-12 mb-3">
-            <label for="inputState" class="form-label">
-              Student ID
-            </label>
-            <select
-              id="inputState"
-              class="form-select"
-              name="studentId"
-              value={this.state.enroll.studentId}
-              onChange={this.handleChange}
-            >
-              <option selected>select-!-</option>
-              {this.state.student.map((opt) => (
-                <option value={opt.studentId}>{opt.studentId}</option>
-              ))}
-            </select>
-          </div>
           <div class="col-md-12 mb-3">
             <label for="inputState" class="form-label">
               Course Name
