@@ -1,5 +1,6 @@
 package com.serviceimplementation;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.DTO.StudentDTO;
+import com.advices.AdminAuthenticationFailedException;
 import com.advices.DataNotFoundedException;
 import com.entity.Course;
 import com.entity.Student;
+import com.entity.StudentEnrollment;
 import com.repository.CourseRepository;
+import com.repository.StudentEnrollmentRepository;
 import com.repository.StudentRepository;
 import com.service.StudentRegisterService;
 
@@ -18,10 +22,13 @@ import com.service.StudentRegisterService;
 public class StudentRegister implements StudentRegisterService {
 
 	@Autowired
-	StudentRepository studentRepository;
+	private StudentRepository studentRepository;
 
 	@Autowired
-	CourseRepository courseRepository;
+	private CourseRepository courseRepository;
+	
+	@Autowired
+	private StudentEnrollmentRepository studentEnrollmentRepository;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
@@ -102,7 +109,32 @@ public class StudentRegister implements StudentRegisterService {
 
 	}
 
+	public Student enrollStudent(int studentId, int courseId, String batchName) throws Exception {
+		
+			StudentEnrollment studentEnrollment = new StudentEnrollment();
 
+			Student s1 = studentRepository.findById(studentId)
+					.orElseThrow(() -> new DataNotFoundedException("student Id not found in database"));
+			Course c1 = courseRepository.findById(courseId)
+					.orElseThrow(() -> new DataNotFoundedException("course Id not found in database"));
+
+			studentEnrollment.setBatchName(batchName);
+//		long millis = System.currentTimeMillis();
+//		Date date = new Date(millis);
+			LocalDate date = LocalDate.now();
+			studentEnrollment.setEnrollmentDate(date);
+			studentEnrollment.setCompletionDate(null);
+			studentEnrollment.setsId(studentId);
+			studentEnrollment.setCourse(c1);
+			studentEnrollment.setStatus(false);
+
+			s1.addStudentEnrollment(studentEnrollment);
+			studentEnrollmentRepository.save(studentEnrollment);
+			return s1;
+		
+	}
+	
+	
 	@Override
 	public Student updateStudentDetails(Student s2) throws DataNotFoundedException {
 		int stuId = s2.getStudentId();

@@ -85,4 +85,9 @@ public class StudentController {
 	public ResponseEntity<List<Exam>> getExamsByStudentID(@PathVariable int studentId) throws Exception{
 		return new ResponseEntity<List<Exam>>(studentExam.getExamsByStudentID(studentId), HttpStatus.OK);
 	}
+	
+	@PostMapping("/selfEnrollment/{studentId}/{courseId}/{batchName}")
+	public ResponseEntity<Student> enrollStudent(@PathVariable int studentId,@PathVariable int courseId,@PathVariable String batchName) throws Exception{
+		return new ResponseEntity<Student>(studentservice.enrollStudent(studentId,courseId,batchName), HttpStatus.OK);
+	}
 }

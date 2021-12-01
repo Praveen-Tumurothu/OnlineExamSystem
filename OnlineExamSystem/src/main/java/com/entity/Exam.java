@@ -49,7 +49,7 @@ public class Exam implements Serializable {
 	}
 
 	// Specifying One to One Relation
-	@OneToOne(targetEntity = TestPaper.class, cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = TestPaper.class)
 	@JoinColumn(name = "testPaperCode", referencedColumnName = "testPaperCode") // Joins the new column in Exam entity
 																				// as testPaperCode
 	private TestPaper testpaper;

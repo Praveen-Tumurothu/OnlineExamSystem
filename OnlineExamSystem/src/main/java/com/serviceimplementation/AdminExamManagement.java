@@ -37,8 +37,8 @@ public class AdminExamManagement implements AdminExamManagementService {
 	@Autowired
 	private AdminAuthenticationImpl adminAuthenticationImpl;
 
-	@Override
-	public Exam scheduleExamForStudent(int studentId, int enrollmentId, int testPaperCode, LocalDateTime locDateTime, // NOPMD by AsusT on 08/11/21, 2:57 pm
+	@Override // 1 //10 //4
+	public Exam scheduleExamForStudent(int studentId, int enrollmentId, int testPaperCode, LocalDateTime locDateTime, // NOPMD																// pm
 			int examDurationInMinutes) throws Exception {
 		if (adminAuthenticationImpl.isLogin) {
 			Student student = studentRepository.findById(studentId)
@@ -49,8 +49,10 @@ public class AdminExamManagement implements AdminExamManagementService {
 					.orElseThrow(() -> new DataNotFoundedException("test paper code not found in database"));
 
 			Exam exam = new Exam();
+			int check = 0;
 			for (StudentEnrollment se : student.getStudentEnrollment()) {
 				if (se.getEnrollmentId() == enrollmentId) {
+					++check;
 					exam.setExamDuration(examDurationInMinutes);
 					exam.setMaximumScore(10);
 					exam.setDateOfExam(locDateTime);
@@ -59,14 +61,14 @@ public class AdminExamManagement implements AdminExamManagementService {
 					exam.setEnrollId(enrollmentId);
 					exam.setAnnouncedToStudent(true);
 					exam.setTestpaper(testPaper);
-
 					examRepository.save(exam);
 					studentEnrollment.addExam(exam);
 					studentEnrollmentRepository.save(studentEnrollment);
 
-				} else {
-					throw new DataNotFoundedException("Student didn't enrolled in this course....");
 				}
+			}
+			if (check == 0) {
+				throw new DataNotFoundedException("Student didn't enrolled in this course....");
 
 			}
 
@@ -193,7 +195,8 @@ public class AdminExamManagement implements AdminExamManagementService {
 	}
 
 	@Override
-	public List<Exam> findResultByEnrollmentId(int enrollmentId) throws DataNotFoundedException, AdminAuthenticationFailedException {
+	public List<Exam> findResultByEnrollmentId(int enrollmentId)
+			throws DataNotFoundedException, AdminAuthenticationFailedException {
 		if (adminAuthenticationImpl.isLogin) {
 			StudentEnrollment studentenrollment = studentEnrollmentRepository.findById(enrollmentId)
 					.orElseThrow(() -> new DataNotFoundedException("enrollment Id not found in databse"));
@@ -250,7 +253,7 @@ public class AdminExamManagement implements AdminExamManagementService {
 			return AdminExamManagement.releaseTestResultForBatch = true;
 		} else {
 			throw new AdminAuthenticationFailedException("You Must be Logged in as Administrator...");
-		}	
+		}
 	}
 
 }
