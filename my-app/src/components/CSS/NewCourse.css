@@ -1,0 +1,24 @@
+h1 {
+  color: rgba(3, 61, 186, 30);
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+form div,
+#h1 {
+  color: rgb(3, 61, 186);
+}
+.images {
+  background-image: url("https://images.pexels.com/photos/583475/pexels-photo-583475.jpeg?cs=srgb&dl=pexels-lizandro-flores-583475.jpg&fm=jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: 15px;
+  padding-bottom: 45px;
+  height: 49.5em;
+}
+
+#main1 {
+  opacity: 0.8;
+  transform: translateY(40px);
+}

@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.wrapp {
+  transform: translateY(-50px);
+  /* transform: translateX(400px); */
+  opacity: 0.9;
+  margin: 0px auto;
+}
+.h3 {
+  color: #2014ce;
+}
+
+.bgimg1 {
+  /* background: linear-gradient(45deg, #ce1e53, #8f00c7);
+  min-height: 100vh;
+  padding-top: 1em; */
+  background-image: url("https://images.pexels.com/photos/5940721/pexels-photo-5940721.jpeg?cs=srgb&dl=pexels-kampus-production-5940721.jpg&fm=jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center/center;
+  height: 100vh;
+  opacity: 0.9;
+  padding: 124px 0;
+}
+/* .bgimg1 {
+  background: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+  min-height: 100vh;
+  padding-top: 1em;
+} */
+.mandatory::after {
+  content: "*";
+  color: #ff0000;
+}
+
+.mandatorygender::after {
+  content: "*";
+  color: #ff0000;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapp {
+  max-width: 800px;
+  margin-bottom: 0px !important;
+  padding: 30px 45px;
+  box-shadow: 5px 25px 35px #3535356b;
+}
+
+.wrapp label {
+  display: block;
+  padding-bottom: 0.2rem;
+}
+
+.wrapp .form .row {
+  padding: 0.6rem 0;
+}
+
+.wrapp .form .row .form-control {
+  box-shadow: none;
+}
+
+.wrapp .form .option {
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.wrapp .form .option input {
+  opacity: 0;
+}
+
+.wrapp .form .checkmark {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #bbb;
+  border-radius: 50%;
+}
+
+.wrapp .form .option input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.wrapp .form .option:hover .checkmark {
+  background: #f3f3f3;
+}
+
+.wrapp .form .option .checkmark:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: block;
+  background: linear-gradient(45deg, #ce1e53, #8f00c7);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 300ms ease-in-out 0s;
+}
+
+.wrapp .form .option input[type="radio"]:checked ~ .checkmark {
+  background: #fff;
+  transition: 300ms ease-in-out 0s;
+}
+
+.wrapp .form .option input[type="radio"]:checked ~ .checkmark:after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#sub {
+  display: block;
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  color: #333;
+}
+
+#sub:focus {
+  outline: none;
+}
+
+@media (max-width: 768.5px) {
+  .wrapp {
+    margin: 30px;
+  }
+
+  .wrapp .form .row {
+    padding: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .wrapp {
+    padding: 25px;
+    margin: 20px;
+  }
+}
